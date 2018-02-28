@@ -98,7 +98,7 @@ INCUBATE_EGGS = False      # incubate eggs if available
 # 'some' will encounter Pokémon if they are in ENCOUNTER_IDS or eligible for notification
 # 'notifying' will encounter Pokémon that are eligible for notifications
 # None will never encounter Pokémon
-ENCOUNTER = some
+ENCOUNTER = None
 #ENCOUNTER_IDS = (25,27,35,39,52,56,58,63,64,65,66,68,72,74,76,81,83,87,88,89,90,91,92,94,95,100,106,107,108,111,113,114,115,123,124,128,129,130,131,133,137,138,140,142,143,147,148,149,155,157,176,179,180,181,201,204,214,215,216,237,241,242,245,246,247,248,254,255,256,257,258,259,260,261,270,271,272,275,278,279,280,281,283,287,288,289,298,299,302,303,304,305,306,307,308,310,311,312,313,314,318,319,320,321,323,324,325,326,327,328,329,330,331,332,333,334,335,338,339,340,341,342,343,344,345,346,347,348,349,351,352,353,354,357,358,366,367,368,370,371,372,373,374,375,376,377,378,379)
 
 # PokéStops
@@ -247,7 +247,7 @@ NOTIFY = True  # enable notifications
 
 # create images with Pokémon image and optionally include IVs and moves
 # requires cairo and ENCOUNTER = 'notifying' or 'all'
-TWEET_IMAGES = false
+TWEET_IMAGES = False
 # IVs and moves are now dependant on level, so this is probably not useful
 IMAGE_STATS = False
 
