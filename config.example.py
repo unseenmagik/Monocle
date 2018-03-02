@@ -50,7 +50,7 @@ ACCOUNTS_CSV = 'accounts.csv'
 # Lower numbers will increase the amount of time it takes for all workers to
 # get started but are recommended to avoid suddenly flooding the servers with
 # accounts and arousing suspicion.
-SIMULTANEOUS_LOGINS = 16
+SIMULTANEOUS_LOGINS = 1
 
 # Limit the number of workers simulating the app startup process simultaneously.
 SIMULTANEOUS_SIMULATION = 4
