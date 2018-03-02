@@ -98,12 +98,13 @@ INCUBATE_EGGS = False      # incubate eggs if available
 # 'some' will encounter Pokémon if they are in ENCOUNTER_IDS or eligible for notification
 # 'notifying' will encounter Pokémon that are eligible for notifications
 # None will never encounter Pokémon
-ENCOUNTER = None
+ENCOUNTER = All
 #ENCOUNTER_IDS = (25,27,35,39,52,56,58,63,64,65,66,68,72,74,76,81,83,87,88,89,90,91,92,94,95,100,106,107,108,111,113,114,115,123,124,128,129,130,131,133,137,138,140,142,143,147,148,149,155,157,176,179,180,181,201,204,214,215,216,237,241,242,245,246,247,248,254,255,256,257,258,259,260,261,270,271,272,275,278,279,280,281,283,287,288,289,298,299,302,303,304,305,306,307,308,310,311,312,313,314,318,319,320,321,323,324,325,326,327,328,329,330,331,332,333,334,335,338,339,340,341,342,343,344,345,346,347,348,349,351,352,353,354,357,358,366,367,368,370,371,372,373,374,375,376,377,378,379)
 
 # PokéStops
 SPIN_POKESTOPS = False  # spin all PokéStops that are within range
 SPIN_COOLDOWN = 300    # spin only one PokéStop every n seconds (default 300)
+LURE_DURATION = 1800 # lure duration (default 30mn)
 
 # minimum number of each item to keep if the bag is cleaned
 # bag cleaning is disabled if this is not present or is commented out
@@ -127,7 +128,7 @@ ITEM_LIMITS = {
 '''
 
 # Update the console output every x seconds
-REFRESH_RATE = 1  # 750ms
+REFRESH_RATE = 0.75  # 750ms
 # Update the seen/speed/visit/speed stats every x seconds
 STAT_REFRESH = 5
 
@@ -168,7 +169,7 @@ REPORT_SINCE = datetime(2017, 2, 17)  # base reports on data from after this dat
 
 # used for altitude queries and maps in reports
 GOOGLE_MAPS_KEY = 'AIzaSyDWvrUNClEB8Y312KlLGPHjPtK5I8j1UMw'
-REPORT_MAPS = False  # Show maps on reports
+REPORT_MAPS = True  # Show maps on reports
 #ALT_RANGE = (0, 62)  # Fall back to altitudes in this range if Google query fails
 
 ## Round altitude coordinates to this many decimal places
@@ -193,7 +194,7 @@ MAP_WORKERS = True
 LAST_MIGRATION = 1481932800  # Feb. 17th, 2018
 
 # Treat a spawn point's expiration time as unknown if nothing is seen at it on more than x consecutive visits
-FAILURES_ALLOWED = 5
+FAILURES_ALLOWED = 2
 
 ## Map data provider and appearance, previews available at:
 ## https://leaflet-extras.github.io/leaflet-providers/preview/
@@ -316,6 +317,8 @@ TWITTER_ACCESS_SECRET = 'P8IqZ3h7ZaGvOHg1MZFX2P0LLM8dlPrCYGIi92g0cXUnc'
 ##     https://api.telegram.org/bot<BOT_TOKEN_HERE>/getUpdates
 #TELEGRAM_BOT_TOKEN = '123456789:AA12345qT6QDd12345RekXSQeoZBXVt-AAA'
 #TELEGRAM_CHAT_ID = '@your_channel'
+
+ICONS_URL = "https://raw.githubusercontent.com/ZeChrales/monocle-icons/larger-outlined/larger-icons/{}.png"
 
 WEBHOOKS = {'http://127.0.0.1:4000'}
 
