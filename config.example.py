@@ -2,7 +2,7 @@
 
 DB_ENGINE = 'sqlite:///db.sqlite'
 #DB_ENGINE = 'mysql://user:pass@localhost/monocle'
-#DB_ENGINE = 'postgresql://user:pass@localhost/monocle
+#DB_ENGINE = 'postgresql://user:pass@localhost/monocle'
 
 AREA_NAME = 'TLH'     # the city or region you are scanning
 LANGUAGE = 'EN'       # ISO 639-1 codes EN, DE, ES, FR, IT, JA, KO, PT, or ZH for Pokémon/move names
@@ -31,9 +31,9 @@ STAY_WITHIN_MAP = True
 # lower values are more thorough but will take longer
 BOOTSTRAP_RADIUS = 120
 
-GIVE_UP_KNOWN = 10   # try to find a worker for a known spawn for this many seconds before giving up
-GIVE_UP_UNKNOWN = 120 # try to find a worker for an unknown point for this many seconds before giving up
-SKIP_SPAWN = 240      # don't even try to find a worker for a spawn if the spawn time was more than this many seconds ago
+GIVE_UP_KNOWN = 75   # try to find a worker for a known spawn for this many seconds before giving up
+GIVE_UP_UNKNOWN = 60 # try to find a worker for an unknown point for this many seconds before giving up
+SKIP_SPAWN = 90      # don't even try to find a worker for a spawn if the spawn time was more than this many seconds ago
 
 # How often should the mystery queue be reloaded (default 90s)
 # this will reduce the grouping of workers around the last few mysteries
@@ -50,10 +50,10 @@ ACCOUNTS_CSV = 'accounts.csv'
 # Lower numbers will increase the amount of time it takes for all workers to
 # get started but are recommended to avoid suddenly flooding the servers with
 # accounts and arousing suspicion.
-SIMULTANEOUS_LOGINS = 1
+SIMULTANEOUS_LOGINS = 4
 
 # Limit the number of workers simulating the app startup process simultaneously.
-SIMULTANEOUS_SIMULATION = 4
+SIMULTANEOUS_SIMULATION = 10
 
 # Immediately select workers whose speed are below (SPEED_UNIT)p/h instead of
 # continuing to try to find the worker with the lowest speed.
@@ -79,18 +79,18 @@ HASH_KEY = '5H4V7V6E5K1P5U8B3K3G'  # this key is fake
 #   75/150 hashes available 35/60 seconds passed => fine
 #   70/150 hashes available 30/60 seconds passed => throttle (only scan)
 # value: how many requests to keep as spare (0.1 = 10%), False to disable
-SMART_THROTTLE = False
+#SMART_THROTTLE = 0.1
 
 # Swap the worker that has seen the fewest Pokémon every x seconds
 # Defaults to whatever will allow every worker to be swapped within 6 hours
 #SWAP_OLDEST = 300  # 5 minutes
 # Only swap if it's been active for more than x minutes
-MINIMUM_RUNTIME = 2000
+#MINIMUM_RUNTIME = 10
 
 ### these next 6 options use more requests but look more like the real client
 APP_SIMULATION = True     # mimic the actual app's login requests
-COMPLETE_TUTORIAL = False  # complete the tutorial process and configure avatar for all accounts that haven't yet
-INCUBATE_EGGS = False      # incubate eggs if available
+COMPLETE_TUTORIAL = True  # complete the tutorial process and configure avatar for all accounts that haven't yet
+INCUBATE_EGGS = True      # incubate eggs if available
 
 ## encounter Pokémon to store IVs.
 ## valid options:
@@ -98,8 +98,8 @@ INCUBATE_EGGS = False      # incubate eggs if available
 # 'some' will encounter Pokémon if they are in ENCOUNTER_IDS or eligible for notification
 # 'notifying' will encounter Pokémon that are eligible for notifications
 # None will never encounter Pokémon
-ENCOUNTER = All
-#ENCOUNTER_IDS = (25,27,35,39,52,56,58,63,64,65,66,68,72,74,76,81,83,87,88,89,90,91,92,94,95,100,106,107,108,111,113,114,115,123,124,128,129,130,131,133,137,138,140,142,143,147,148,149,155,157,176,179,180,181,201,204,214,215,216,237,241,242,245,246,247,248,254,255,256,257,258,259,260,261,270,271,272,275,278,279,280,281,283,287,288,289,298,299,302,303,304,305,306,307,308,310,311,312,313,314,318,319,320,321,323,324,325,326,327,328,329,330,331,332,333,334,335,338,339,340,341,342,343,344,345,346,347,348,349,351,352,353,354,357,358,366,367,368,370,371,372,373,374,375,376,377,378,379)
+ENCOUNTER = ALL
+#ENCOUNTER_IDS = (3, 6, 9, 45, 62, 71, 80, 85, 87, 89, 91, 94, 114, 130, 131, 134)
 
 # PokéStops
 SPIN_POKESTOPS = False  # spin all PokéStops that are within range
@@ -133,19 +133,19 @@ REFRESH_RATE = 0.75  # 750ms
 STAT_REFRESH = 5
 
 # sent with GET_PLAYER requests, should match your region
-PLAYER_LOCALE = {'country': 'US', 'language': 'en', 'timezone': 'America/New York'}
+PLAYER_LOCALE = {'country': 'US', 'language': 'en', 'timezone': 'America/Denver'}
 
 # retry a request after failure this many times before giving up
-MAX_RETRIES = 1
+MAX_RETRIES = 3
 
 # number of seconds before timing out on a login request
 LOGIN_TIMEOUT = 2.5
 
 # add spawn points reported in cell_ids to the unknown spawns list
-MORE_POINTS = True
+#MORE_POINTS = False
 
 # Set to True to kill the scanner when a newer version is forced
-FORCED_KILL = False
+#FORCED_KILL = False
 
 # exclude these Pokémon from the map by default (only visible in trash layer)
 TRASH_IDS = (
@@ -162,44 +162,44 @@ TRASH_IDS = (
 )
 
 # include these Pokémon on the "rare" report
-RARE_IDS = ()
+RARE_IDS = (3, 6, 9, 45, 62, 71, 80, 85, 87, 89, 91, 94, 114, 130, 131, 134)
 
 from datetime import datetime
 REPORT_SINCE = datetime(2017, 2, 17)  # base reports on data from after this date
 
 # used for altitude queries and maps in reports
-GOOGLE_MAPS_KEY = 'AIzaSyDWvrUNClEB8Y312KlLGPHjPtK5I8j1UMw'
+#GOOGLE_MAPS_KEY = 'OYOgW1wryrp2RKJ81u7BLvHfYUA6aArIyuQCXu4'  # this key is fake
 REPORT_MAPS = True  # Show maps on reports
-#ALT_RANGE = (0, 62)  # Fall back to altitudes in this range if Google query fails
+#ALT_RANGE = (1250, 1450)  # Fall back to altitudes in this range if Google query fails
 
 ## Round altitude coordinates to this many decimal places
 ## More precision will lead to larger caches and more Google API calls
 ## Maximum distance from coords to rounded coords for precisions (at Lat40):
 ## 1: 7KM, 2: 700M, 3: 70M, 4: 7M
-ALT_PRECISION = 1
+#ALT_PRECISION = 2
 
 ## Automatically resolve captchas using 2Captcha key.
 #CAPTCHA_KEY = '1abc234de56fab7c89012d34e56fa7b8'
 ## the number of CAPTCHAs an account is allowed to receive before being swapped out
-CAPTCHAS_ALLOWED = 1
+#CAPTCHAS_ALLOWED = 3
 ## Get new accounts from the CAPTCHA queue first if it's not empty
-FAVOR_CAPTCHA = True
+#FAVOR_CAPTCHA = True
 
 # allow displaying the live location of workers on the map
 MAP_WORKERS = True
 # filter these Pokemon from the map to reduce traffic and browser load
+#MAP_FILTER_IDS = [161, 165, 16, 19, 167]
 
-#MAP_FILTER_IDS = []
 # unix timestamp of last spawn point migration, spawn times learned before this will be ignored
-LAST_MIGRATION = 1481932800  # Feb. 17th, 2018
+LAST_MIGRATION = 1481932800  # Dec. 17th, 2016
 
 # Treat a spawn point's expiration time as unknown if nothing is seen at it on more than x consecutive visits
 FAILURES_ALLOWED = 2
 
 ## Map data provider and appearance, previews available at:
 ## https://leaflet-extras.github.io/leaflet-providers/preview/
-MAP_PROVIDER_URL = '//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-MAP_PROVIDER_ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+#MAP_PROVIDER_URL = '//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+#MAP_PROVIDER_ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 
 # set of proxy addresses and ports
 # SOCKS requires aiosocks to be installed
@@ -207,7 +207,7 @@ MAP_PROVIDER_ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/copyri
 
 # convert spawn_id to integer for more efficient DB storage, set to False if
 # using an old database since the data types are incompatible.
-SPAWN_ID_INT = True
+#SPAWN_ID_INT = True
 
 # Bytestring key to authenticate with manager for inter-process communication
 #AUTHKEY = b'm3wtw0'
@@ -240,21 +240,23 @@ LOAD_CUSTOM_JS_FILE = False   # File path MUST be 'static/js/custom.js'
 #TELEGRAM_USERNAME = None  # Username withouth '@' char
 
 ## Variables below will be used as default values on frontend
+#RAIDS_FILTER = (1, 2, 3, 4, 5)  # Levels shown by default on map
 FIXED_OPACITY = False  # Make marker opacity independent of remaining time
-SHOW_TIMER = True  # Show remaining time on a label under each pokemon marker
+SHOW_TIMER = False  # Show remaining time on a label under each pokemon marker
+SHOW_TIMER_RAIDS = True  # Show remaining time on a label under each raid marker
 
 ### OPTIONS BELOW THIS POINT ARE ONLY NECESSARY FOR NOTIFICATIONS ###
-NOTIFY = True  # enable notifications
+NOTIFY = False  # enable notifications
 
 # create images with Pokémon image and optionally include IVs and moves
 # requires cairo and ENCOUNTER = 'notifying' or 'all'
-TWEET_IMAGES = False
+TWEET_IMAGES = True
 # IVs and moves are now dependant on level, so this is probably not useful
 IMAGE_STATS = False
 
 # As many hashtags as can fit will be included in your tweets, these will
 # be combined with landmark-specific hashtags (if applicable).
-HASHTAGS = {AREA_NAME, 'PokemonGO', 'Magik Scanner'}
+HASHTAGS = {AREA_NAME, 'MagikBot', 'PokemonGOscan'}
 #TZ_OFFSET = 0  # UTC offset in hours (if different from system time)
 
 # the required number of seconds remaining to notify about a Pokémon
@@ -263,11 +265,11 @@ TIME_REQUIRED = 600  # 10 minutes
 ### Only set either the NOTIFY_RANKING or NOTIFY_IDS, not both!
 # The (x) rarest Pokémon will be eligible for notification. Whether a
 # notification is sent or not depends on its score, as explained below.
-#NOTIFY_RANKING = 90
+NOTIFY_RANKING = 90
 
 # Pokémon to potentially notify about, in order of preference.
 # The first in the list will have a rarity score of 1, the last will be 0.
-NOTIFY_IDS = (25,27,35,39,52,56,58,63,64,65,66,68,72,74,76,81,83,87,88,89,90,91,92,94,95,100,106,107,108,111,113,114,115,123,124,128,129,130,131,133,137,138,140,142,143,147,148,149,155,157,176,179,180,181,201,204,214,215,216,237,241,242,245,246,247,248,254,255,256,257,258,259,260,261,270,271,272,275,278,279,280,281,283,287,288,289,298,299,302,303,304,305,306,307,308,310,311,312,313,314,318,319,320,321,323,324,325,326,327,328,329,330,331,332,333,334,335,338,339,340,341,342,343,344,345,346,347,348,349,351,352,353,354,357,358,366,367,368,370,371,372,373,374,375,376,377,378,379)
+#NOTIFY_IDS = (130, 89, 131, 3, 9, 134, 62, 94, 91, 87, 71, 45, 85, 114, 80, 6)
 
 # Sightings of the top (x) will always be notified about, even if below TIME_REQUIRED
 # (ignored if using NOTIFY_IDS instead of NOTIFY_RANKING)
@@ -277,7 +279,7 @@ ALWAYS_NOTIFY = 14
 #ALWAYS_NOTIFY_IDS = {89, 130, 144, 145, 146, 150, 151}
 
 # Never notify about the following Pokémon, even if they would otherwise be eligible
-NEVER_NOTIFY_IDS = TRASH_IDS
+#NEVER_NOTIFY_IDS = TRASH_IDS
 
 # Override the rarity score for particular Pokémon
 # format is: {pokemon_id: rarity_score}
@@ -315,8 +317,19 @@ TWITTER_ACCESS_SECRET = 'P8IqZ3h7ZaGvOHg1MZFX2P0LLM8dlPrCYGIi92g0cXUnc'
 ## 1) '@channel_name' for channels
 ## 2) Your chat_id if you will use your own account. To retrieve your ID, write to your bot and check this URL:
 ##     https://api.telegram.org/bot<BOT_TOKEN_HERE>/getUpdates
+##
+## TELEGRAM_MESSAGE_TYPE can be 0 or 1:
+## => 0 you'll receive notifications as venue (as you already seen before in Monocle)
+## => 1 you'll receive notifications as text message with GMaps link
 #TELEGRAM_BOT_TOKEN = '123456789:AA12345qT6QDd12345RekXSQeoZBXVt-AAA'
 #TELEGRAM_CHAT_ID = '@your_channel'
+#TELEGRAM_MESSAGE_TYPE = 0
+
+NOTIFY_RAIDS = False  # enable raid notifications
+RAIDS_LVL_MIN = 4
+#RAIDS_IDS = {143, 248}
+#RAIDS_DISCORD_URL = "https://discordapp.com/api/webhooks/xxxxxxxxxxxx/xxxxxxxxxxxx"
+#TELEGRAM_RAIDS_CHAT_ID = '@your_channel'
 
 ICONS_URL = "https://raw.githubusercontent.com/ZeChrales/monocle-icons/larger-outlined/larger-icons/{}.png"
 
